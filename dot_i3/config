@@ -1,0 +1,265 @@
+# use Windows key
+set $mod Mod4
+
+#
+# Key bindings
+#
+# dmenu
+bindsym $mod+d exec "rofi -combi-modi window,run,drun -show-icons -show combi -modi combi"
+# Terminal
+bindsym $mod+Return exec gnome-terminal
+# Lock screen
+bindsym Control+mod1+l exec xautolock -locknow
+# Journal (zim)
+bindsym Control+mod1+j exec zim
+
+#
+# Screenshot
+#
+bindsym Print exec --no-startup-id "maim ~/Pictures/Screenshot-$(date +%Y%m%d%H%M%S).png"
+bindsym Shift+Print exec --no-startup-id "maim | xclip -selection clipboard -t image/png"
+bindsym Control+Print exec --no-startup-id "maim -s ~/Pictures/Screenshot-$(date +%Y%m%d%H%M%S).png"
+bindsym Shift+Control+Print exec --no-startup-id "maim -s | xclip -selection clipboard -t image/png"
+
+#
+# Clipboard
+#
+# FIXME switched to copyq because selection doesn't work reliably in chrome and others
+# bindsym Control+mod1+v exec --no-startup-id "/usr/bin/diodon"
+
+#
+# Media Keys
+#
+#XF86 Volume
+bindsym $mod+XF86AudioMute exec --no-startup-id ~/.scripts/bt_fiio_connect.sh
+bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -SIGUSR1 i3status"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -SIGUSR1 i3status"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -SIGUSR1 i3status"
+
+#XF86 Microphone
+bindsym XF86AudioMicMute exec "amixer set Capture toggle"
+
+#XF86 Brightness
+#bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+#bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 2%-
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +2%
+
+#XF86 Shortcuts
+bindsym XF86Display exec --no-startup-id ~/.scripts/display-config.sh auto
+bindsym $mod+XF86Display exec --no-startup-id notify-send -t 1000 "$(echo "Display blanking $(~/.scripts/display-blanking.sh)")"
+bindsym Control+XF86Display exec --no-startup-id ~/.scripts/display-config.sh
+bindsym Control+$mod+XF86Display exec --no-startup-id ~/.scripts/reflow-workspaces.py
+bindsym XF86TouchpadToggle exec --no-startup-id ~/.scripts/touchscreen-toggle.sh
+
+#XF86 Spotify
+bindsym XF86AudioPlay exec --no-startup-id ~/.scripts/sp play
+bindsym XF86AudioPrev exec --no-startup-id ~/.scripts/sp prev
+bindsym XF86AudioNext exec --no-startup-id ~/.scripts/sp next
+
+#XF86 Tools
+bindsym XF86Tools exec --no-startup-id ~/.scripts/startup-workspace.sh start
+bindsym Shift+XF86Tools exec --no-startup-id ~/.scripts/startup-workspace.sh stop
+bindsym Control+XF86Tools exec --no-startup-id ~/.scripts/startup-applications.sh start
+bindsym Control+Shift+XF86Tools exec --no-startup-id ~/.scripts/startup-applications.sh stop
+
+bindsym Control+Shift+Insert exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ +5% && killall -SIGUSR1 i3status"
+bindsym Control+Shift+Delete exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ -5% && killall -SIGUSR1 i3status"
+
+#
+# Daemons
+#
+# Use xautolock to lock screen automatically after timeout
+exec --no-startup-id xautolock -time 5 -locker /usr/bin/i3lock-fancy &
+exec --no-startup-id compton -b &
+exec --no-startup-id dunst &
+
+#
+# Startup scripts
+#
+exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
+exec --no-startup-id ~/.scripts/touchscreen-toggle.sh
+exec --no-startup-id ~/.scripts/keyboard.sh
+exec --no-startup-id ~/.scripts/touchpad.sh
+
+#
+# Startup apps
+#
+exec --no-startup-id ~/.scripts/startup-applications.sh start
+exec --no-startup-id nm-applet &
+exec --no-startup-id pasystray &
+exec --no-startup-id cbatticon &
+
+#
+# Application windows settings
+#
+for_window [class="Pomello"] floating enable
+for_window [instance="zim"] floating enable, border normal
+for_window [instance="pavucontrol"] floating enable, border normal
+for_window [instance="gnome-calculator"] floating enable, border normal
+for_window [instance="zoom"] floating enable, border normal
+for_window [instance="copyq"] floating enable
+
+#
+# Windows navigation
+#
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# focus windows
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move windows
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split horizontal vertical
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+# change container layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# fullscreen toggle
+bindsym $mod+f fullscreen
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent/child container
+bindsym $mod+a focus parent
+bindsym $mod+Shift+a focus child
+
+# never move mouse (warping) to a new window when changing output
+mouse_warping none
+
+# leave fullscreen when a popup appears
+popup_during_fullscreen leave_fullscreen
+
+#
+# Scratchpad
+#
+# Make the currently focused window a scratchpad
+bindsym Shift+$mod+equal move scratchpad
+# Show the first scratchpad window
+bindsym $mod+equal scratchpad show
+# Remove from scratchpad (Floating toggle)
+bindsym $mod+minus floating toggle
+
+#
+# Workspaces
+#
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# Jump to left/right desktop
+bindsym Control+mod1+Left workspace prev
+bindsym Control+mod1+Right workspace next
+
+# Move window to left/right desktop and follow
+bindsym Control+mod1+Shift+Left move to workspace prev ; workspace prev
+bindsym Control+mod1+Shift+Right move to workspace next ; workspace next
+
+# Move workspace to output
+bindsym $mod+x move workspace to output right
+bindsym $mod+z move workspace to output left
+bindsym $mod+Shift+x move workspace to output up
+bindsym $mod+Shift+z move workspace to output down
+
+#
+# Windows Resize
+#
+bindsym $mod+r mode "resize"
+mode "resize" {
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow width 10 px or 10 ppt
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+#
+# Appearance
+#
+# font
+font pango:Hack 10
+
+# default_border normal|pixel <px>
+# default_floating_border normal|pixel <px>
+default_border pixel 1
+default_floating_border normal
+hide_edge_borders smart
+
+# color theme okraits from: https://github.com/okraits/j4-make-config
+# class                 border  backgr. text    indicator
+client.focused          #888888 #dddddd #222222 #2e9ef4
+client.focused_inactive #333333 #555555 #bbbbbb #484e50
+client.unfocused        #333333 #333333 #888888 #292d2e
+client.urgent           #2f343a #900000 #ffffff #900000
+
+# i3bar
+bar {
+  position top
+  status_command i3status
+  tray_output DP1
+  tray_output DP2
+  tray_output HDMI1
+  tray_output HDMI2
+  tray_output eDP1
+  tray_padding 0
+  font pango:Hack 10
+  colors {
+      background #333333
+      statusline #bbbbbb
+      focused_workspace #888888 #dddddd #222222
+      active_workspace #333333 #555555 #bbbbbb
+      inactive_workspace #333333 #555555 #bbbbbb
+  }
+}
+
+#
+# Exit/Restart/Reload i3
+#
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace
+bindsym $mod+Shift+r restart
+# exit i3
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit?' -b 'Yes' 'i3-msg exit'"
+
+# vi: ft=i3config

@@ -1,0 +1,18 @@
+#My Scripts
+export PATH=$PATH:.
+#export PATH=$PATH:~/.dotfiles/scripts
+
+export PATH=/usr/local/sbin:$PATH
+export PATH=/usr/local/bin:$PATH
+
+# local bins
+export PATH=$HOME/bin:$PATH
+
+# Arkade bin
+export PATH=$HOME/.arkade/bin:$PATH
+
+# Go binaries
+export PATH=$HOME/go/bin:$PATH
+
+# krew kubectl plugin
+export PATH=$HOME/.krew/bin:$PATH
