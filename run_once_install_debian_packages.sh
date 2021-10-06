@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
 # check if running Debian
-uname -a | grep Debian || exit 0
+uname -a | grep 'Debian\|Ubuntu' || exit 0
 
 if ! grep -q contrib /etc/apt/sources.list; then
 	sudo sed -i 's/\(^deb.*$\)/\1 contrib/' /etc/apt/sources.list
