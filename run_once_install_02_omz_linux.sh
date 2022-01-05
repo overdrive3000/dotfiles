@@ -9,6 +9,8 @@ pushd /tmp
 	./nerd-fonts/install.sh
 popd
 
+sudo rm -rf /tmp/nerd-fonts
+
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 ZSH_CUSTOM=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
