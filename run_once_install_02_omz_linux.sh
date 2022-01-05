@@ -25,4 +25,4 @@ fi
 ln -fs "$SPACESHIP_PROMPT_CHECKOUT/spaceship.zsh-theme" \
        "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 
-chsh -s $(command -v zsh)
+sudo chsh -s $(command -v zsh)
