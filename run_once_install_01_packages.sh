@@ -39,6 +39,7 @@ sudo apt install -y \
 	pipewire \
 	powertop \
 	python3-dev \
+  python3-pip \
 	python3-venv \
 	python3-wheel \
 	python3-xlib \
