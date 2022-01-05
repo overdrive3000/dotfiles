@@ -1,12 +1,7 @@
 #!/bin/bash -x
 
-# check if running Debian
-uname -a | grep 'Debian\|Ubuntu' || exit 0
-
-if ! grep -q contrib /etc/apt/sources.list; then
-	sudo sed -i 's/\(^deb.*$\)/\1 contrib/' /etc/apt/sources.list
-	sudo sed -i 's/\(^deb .*$\)/\1 non-free/' /etc/apt/sources.list
-fi
+# check if running Ubuntu
+uname -a | grep 'Ubuntu' || exit 0
 
 sudo apt update && sudo apt -y upgrade
 
@@ -38,6 +33,7 @@ sudo apt install -y \
 	libdbus-glib-1-dev \
 	libnotify-bin \
 	linux-cpupower \
+  neovim \
 	nmap \
 	nmon \
 	pasystray \
