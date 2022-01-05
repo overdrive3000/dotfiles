@@ -8,6 +8,7 @@ sudo apt update && sudo apt -y upgrade
 sudo apt install -y \
 	apt-transport-https \
   autojump \
+  bat \
 	blueman \
 	build-essential \
 	ca-certificates \
@@ -60,11 +61,5 @@ sudo apt install -y \
 	zsh \
 	zsh-autosuggestions \
 	zsh-syntax-highlighting	
-
-# bat - cat with wings
-BAT_VERSION=0.15.4
-BAT_DEB=~/Downloads/bat_${GIT_DELTA_VERSION}_amd64.deb
-curl -s -C - -Lo $BAT_DEB https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat_${BAT_VERSION}_amd64.deb
-sudo apt install $BAT_DEB
 
 pip install --user powerline-status
