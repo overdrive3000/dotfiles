@@ -8,7 +8,6 @@ sudo apt update && sudo apt -y upgrade
 sudo apt install -y \
 	apt-transport-https \
   autojump \
-  bat \
 	blueman \
 	build-essential \
 	ca-certificates \
