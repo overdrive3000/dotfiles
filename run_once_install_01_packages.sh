@@ -17,7 +17,6 @@ sudo apt install -y \
 	copyq \
 	dnsutils \
 	feh \
-	firmware-misc-nonfree \
   fzf \
 	git \
 	gnupg \
@@ -32,7 +31,6 @@ sudo apt install -y \
 	libcairo2-dev \
 	libdbus-glib-1-dev \
 	libnotify-bin \
-	linux-cpupower \
   neovim \
 	nmap \
 	nmon \
