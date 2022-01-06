@@ -41,6 +41,7 @@ sudo apt install -y \
 	pavucontrol \
 	pipewire \
 	powertop \
+  powerline \
 	python3-dev \
   python3-pip \
 	python3-venv \
