@@ -18,6 +18,8 @@ sudo apt install -y \
 	dnsutils \
 	feh \
   fzf \
+  g++ \
+  gcc \
 	git \
 	gnupg \
 	gparted \
@@ -31,6 +33,7 @@ sudo apt install -y \
 	libcairo2-dev \
 	libdbus-glib-1-dev \
 	libnotify-bin \
+  make \
   neovim \
 	nmap \
 	nmon \
