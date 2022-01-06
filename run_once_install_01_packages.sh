@@ -34,7 +34,6 @@ sudo apt install -y \
   neovim \
 	nmap \
 	nmon \
-  npm \
 	pasystray \
 	pavucontrol \
 	pipewire \
@@ -66,3 +65,6 @@ sudo apt install -y \
 pip install --user powerline-status
 
 sudo snap install bw
+
+curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt install nodejs
