@@ -34,6 +34,7 @@ sudo apt install -y \
   neovim \
 	nmap \
 	nmon \
+  npm \
 	pasystray \
 	pavucontrol \
 	pipewire \
