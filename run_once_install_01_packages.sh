@@ -64,3 +64,5 @@ sudo apt install -y \
 	zsh-syntax-highlighting	
 
 pip install --user powerline-status
+
+sudo snap install bw
