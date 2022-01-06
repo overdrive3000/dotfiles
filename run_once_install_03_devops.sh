@@ -41,3 +41,6 @@ pushd /tmp || exit
   sudo apt update
   sudo apt install code
 popd || exit
+
+# Install CDK
+npm install -g aws-cdk@latest
