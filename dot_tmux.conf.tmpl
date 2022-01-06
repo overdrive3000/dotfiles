@@ -5,7 +5,7 @@ set -g default-terminal "screen-256color"
 
 set -g mouse on
 
-### Key Bindings {{{
+### Key Bindings 
 # Key combination prefix is <C-a>, not <C-b>
 set -g prefix C-a
 unbind-key C-b
@@ -60,7 +60,7 @@ set -g renumber-windows on
 set-window-option -g monitor-activity on
 set-option -g visual-activity on
 # Activate powerline status bar
-{{- if eq .chezmoi.osRelease.ubuntuCodename "focal "}}
+{{- if eq .chezmoi.osRelease.ubuntuCodename "focal" }}
 source ${HOME}/.local/lib/python3.8/site-packages/powerline/bindings/tmux/powerline.conf
 {{ else }}
 source ${HOME}/.local/lib/python3.9/site-packages/powerline/bindings/tmux/powerline.conf
