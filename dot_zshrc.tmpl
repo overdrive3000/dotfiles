@@ -125,3 +125,6 @@ complete -C '/usr/local/bin/aws_completer' aws
 export GITHUB_TOKEN={{ (bitwardenFields "item" "Github").personal_token.value }}
 
 source $HOME/.profile
+
+# Load fzf ctrl-r key binding
+source /usr/share/doc/fzf/examples/key-bindings.zsh
