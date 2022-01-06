@@ -1,0 +1,3 @@
+{{- if ne .chezmoi.username "overdrive" }}
+.ssh/authorized_keys
+{{- end }}
