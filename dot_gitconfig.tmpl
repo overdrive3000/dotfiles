@@ -186,8 +186,8 @@
     # autosetuprebase = always
 
 [credential]
-    # cache creds (git help credential-cache)
-  helper = cache
+  helper = !aws codecommit credential-helper $@
+  UseHttpPath = true
 
 [filter "tabspace"]
   clean = expand -t 4
