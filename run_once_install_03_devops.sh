@@ -15,7 +15,6 @@ curl -sLS https://get.arkade.dev | sudo sh
 
 for executable in \
 	kubectl \
-	kustomize \
 	helm \
 	terraform \
 	krew \
