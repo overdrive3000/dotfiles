@@ -26,7 +26,7 @@ done
 
 # Install Go
 pushd /tmp || exit
-	curl "https://dl.google.com/go/$(curl https://golang.org/VERSION?m=text).linux-amd64.tar.gz" -o go.tar.gz
+	curl "https://go.dev/dl/go1.17.6.linux-amd64.tar.gz" -o go.tar.gz
 	sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go.tar.gz
 popd || exit
 
