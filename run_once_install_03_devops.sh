@@ -2,6 +2,8 @@
 
 #DESTINATION_DIRECTORY=~/.bin
 
+export GOVERSION="1.17.6"
+
 # Install AWSCLI
 pushd /tmp || exit
 	curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -26,7 +28,7 @@ done
 
 # Install Go
 pushd /tmp || exit
-	curl "https://go.dev/dl/go1.17.6.linux-amd64.tar.gz" -o go.tar.gz
+	curl "https://dl.google.com/go/go${GOVERSION}.linux-amd64.tar.gz" -o go.tar.gz
 	sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go.tar.gz
 popd || exit
 
