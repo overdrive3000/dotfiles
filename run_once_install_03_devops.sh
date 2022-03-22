@@ -2,7 +2,7 @@
 
 #DESTINATION_DIRECTORY=~/.bin
 
-export GOVERSION="1.17.6"
+export GOVERSION="1.17.8"
 
 # Install AWSCLI
 pushd /tmp || exit
