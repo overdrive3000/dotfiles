@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
 # check if running Ubuntu
-uname -a | grep 'Ubuntu' || exit 0
+uname -a | grep -E 'Ubuntu|surface' || exit 0
 
 sudo apt update && sudo apt -y upgrade
 
