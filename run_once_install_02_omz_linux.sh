@@ -3,6 +3,7 @@
 # check if running linux
 uname -a | grep Linux || exit 0
 
+
 # Install NERD Fonts
 pushd /tmp
 	git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git
