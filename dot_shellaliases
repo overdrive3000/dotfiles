@@ -114,3 +114,20 @@ alias linuxssl="docker run --rm -it -v $(pwd):/export frapsoft/openssl $@"
 alias tfi="terraform init"
 alias tfp="terraform plan -out /tmp/bootstrap '-input=false'"
 alias tfa="terraform apply /tmp/bootstrap"
+alias tfd="terraform destroy"
+alias tff="terraform fmt"
+alias tfo="terraform output"
+alias tfv="terraform validate"
+alias tfw="terraform workspace"
+alias tfc="terraform console"
+
+# Replace vim by neovim
+alias vim="nvim"
+alias vi="nvim"
+alias vimdidd="nvim -d"
+
+# mage
+alias mage="go run mage.go"
+
+# Auth finch against ECR
+alias ecr-auth="aws ecr get-login-password --region us-east-1 | finch login --username AWS --password-stdin 093535234988.dkr.ecr.us-east-1.amazonaws.com"
