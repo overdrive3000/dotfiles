@@ -60,4 +60,8 @@ set -g renumber-windows on
 set-window-option -g monitor-activity on
 set-option -g visual-activity on
 # Activate powerline status bar
-# source /usr/share/powerline/bindings/tmux/powerline.conf
+{{ if .chezmoi.os eq "linux" }}
+source /usr/share/powerline/bindings/tmux/powerline.conf
+{{ else if .chezmoi.os eq "darwin" }}
+source /opt/homebrew/lib/python3.11/site-package/powerline/bindings/tmux/powerline.conf
+{{ end }}
