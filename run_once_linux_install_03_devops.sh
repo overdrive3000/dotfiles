@@ -2,7 +2,10 @@
 
 #DESTINATION_DIRECTORY=~/.bin
 
-export GOVERSION="1.17.8"
+# check if running linux
+uname -a | grep Linux || exit 0
+
+export GOVERSION="1.20.4"
 
 # Install AWSCLI
 pushd /tmp || exit
