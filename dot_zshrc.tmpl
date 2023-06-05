@@ -99,7 +99,11 @@ export GITHUB_TOKEN={{ (bitwardenFields "item" "Github").personal_token.value }}
 source $HOME/.profile
 
 # Load fzf ctrl-r key binding
+{{ if eq .chezmoi.os "linux" }}
 source /usr/share/doc/fzf/examples/key-bindings.zsh
+{{ else if eq .chezmoi.os "darwin" }}
+source /opt/homebrew/Cellar/fzf/0.41.1/shell/key-bindings.zsh
+{{ end }}
 
 eval "$(starship init zsh)"
 
