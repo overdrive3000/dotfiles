@@ -2,6 +2,7 @@
 #!/bin/bash
 
 brew tap homebrew/cask-fonts
+brew tap hashicorp/tap
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
 brew "git"
@@ -23,6 +24,7 @@ brew "podman"
 brew "awscli"
 brew "reattach-to-user-namespace"
 brew "tfenv"
+brew "hashicorp/tap/packer"
 cask "font-fira-code-nerd-font"
 cask "visual-studio-code"
 cask "telegram"
