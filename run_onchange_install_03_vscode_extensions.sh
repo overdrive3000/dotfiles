@@ -9,6 +9,6 @@ extensions=(
 	vscodevim.vim
 )
 
-for ext in $(extensions[@]); do
+for ext in ${extensions[@]}; do
 	code --install-extension $ext
 done
