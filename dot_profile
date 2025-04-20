@@ -2,7 +2,7 @@
 # Generic configuration that applies to all shells
 #############################################################
 
-source ~/.shellvars
-source ~/.shellfn
-source ~/.shellpaths
-source ~/.shellaliases
+source ~/.dot_shell/vars
+source ~/.dot_shell/functions
+source ~/.dot_shell/paths
+source ~/.dot_shell/aliases
