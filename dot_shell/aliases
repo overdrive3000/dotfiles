@@ -36,11 +36,6 @@ alias files.usage.user='sudo fs_usage -e -f filesystem|grep -v CACHE_HIT|grep -v
 
 alias game.seek='txt="";for i in {1..20};do txt=$txt"$i. ";done;txt=$txt" Ready or not, here I come";say $txt'
 
-# Git Tools
-# assumes git-up is installed (gem install git-up)
-# switches to 'develop' branch, updates all local branches (nicely using git-up), removes all local branches already merged into 'develop'
-alias gitdev='git checkout develop; git-up; git branch --merged develop | grep -v "\* develop" | xargs -n 1 git branch -d; git branch;'
-
 # IP addresses
 # Improve with templates
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -79,8 +74,6 @@ alias port-forward-enable="echo 'rdr pass inet proto tcp from any to any port 23
 alias port-forward-disable="sudo pfctl -F all -f /etc/pf.conf"
 alias port-forward-list="sudo pfctl -s nat"
 
-# push git repo, but first, use git-up to make sure you are in sync and rebased with the remote
-alias pushup="git-up && git push"
 # Set the extended MacOS attributes on a file such that Quicklook will open it as text
 # Improve with templates
 alias qltext='xattr -wx com.apple.FinderInfo "54 45 58 54 21 52 63 68 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00" $1'
@@ -100,8 +93,6 @@ alias spoton="sudo mdutil -a -i on"
 # Improve with templates
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; mas upgrade'
 
-alias vtop="vtop --theme wizard"
-
 # Improve with templates
 alias jsonfix="pbpaste | jq . | pbcopy"
 
@@ -120,6 +111,7 @@ alias tfo="terraform output"
 alias tfv="terraform validate"
 alias tfw="terraform workspace"
 alias tfc="terraform console"
+alias tfl="terraform state list | grep"
 
 # Replace vim by neovim
 alias vim="nvim"
@@ -130,4 +122,20 @@ alias vimdidd="nvim -d"
 alias mage="go run mage.go"
 
 # Auth finch against ECR
-alias ecr-auth="aws ecr get-login-password --region us-east-1 | finch login --username AWS --password-stdin 093535234988.dkr.ecr.us-east-1.amazonaws.com"
+alias ecr-auth-docker="aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 245150257165.dkr.ecr.eu-west-1.amazonaws.com"
+alias ecr-auth-finch="aws ecr get-login-password --region eu-west-1 | finch login --username AWS --password-stdin 245150257165.dkr.ecr.eu-west-1.amazonaws.com"
+
+# extra kubernetes aliases
+alias kdelpf="kubectl delete pod --force --grace-period 0"
+
+######################
+# J&T specific | begin
+######################
+alias tfdocs="terraform-docs -c ~/.terraform-docs.yaml md ."
+alias tflogin="terraform login tf.platform.glb.jobandtalent.cloud"
+# Teleport cloud version aliases
+alias tsh-poc="$HOME/bin/teleport/tsh.app/Contents/MacOS/tsh"
+alias tctl-poc="$HOME/bin/teleport/tctl.app/Contents/MacOS/tctl"
+#####################
+# J&T specific | end
+#####################
