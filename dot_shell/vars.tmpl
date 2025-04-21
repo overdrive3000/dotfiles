@@ -22,7 +22,7 @@ export AWS_PROFILE=saml-jobandtalent
 export GITHUB_TOKEN={{ (bitwardenFields "item" "LINUXVEN_GH_TOKEN").personal_token.value }}
 {{ end }}
 
-{{ if .isWork }}
+{{ if .isJT }}
 export GITHUB_TOKEN={{ (bitwardenFields "item" "JT_SECRETS").gh_token.value }}
 export VAULT_GITHUB_API_TOKEN=${GITHUB_TOKEN}
 export HOMEBREW_GITHUB_API_TOKEN=${GITHUB_TOKEN}
