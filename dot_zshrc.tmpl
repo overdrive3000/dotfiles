@@ -92,10 +92,6 @@ complete -C '/opt/homebrew/bin/aws_completer' aws
 complete -C '/usr/local/bin/aws_completer' aws
 {{ end }}
 
-# Export GITHUB Personal Access Token
-# Improve with chezmoi
-export GITHUB_TOKEN={{ (bitwardenFields "item" "Github").personal_token.value }}
-
 source $HOME/.profile
 
 # Load fzf ctrl-r key binding
