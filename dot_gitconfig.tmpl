@@ -16,7 +16,7 @@
 
 {{ if .isPersonal }}
 # Authenticate using token when using https URL format
-[url "{{ (bitwardenFields "item" "Github").token_url.value }}"]
+[url "{{ (bitwardenFields "item" "LINUXVEN_GH_TOKEN").token_url.value }}"]
   insteadOf = https://github.com
 {{ end }}
 
