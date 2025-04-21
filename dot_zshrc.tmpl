@@ -68,7 +68,7 @@ plugins=(
   cp catimg command-not-found common-aliases fzf
   zsh-autosuggestions
   git git-extras git-flow gitignore
-  docker kubectl kube-ps1
+  kubectl kube-ps1 fluxcd argocd
   python pip pyenv virtualenv virtualenvwrapper
   golang
   aws
@@ -113,3 +113,12 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 autoload -U +X bashcompinit && bashcompinit
 
 # command -v flux >/dev/null && . <(flux completion zsh)
+
+{{ if .isJT }}
+eval "$(rbenv init - zsh)"
+eval "$(saml2aws --completion-script-zsh)"
+command -v kitt >/dev/null && . <(kitt completion zsh)
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+{{ end }}

@@ -1,3 +1,105 @@
 [default]
 region=eu-west-1
 output=json
+
+{{ if .isJT }}
+# Jobandtalent account
+[profile jobandtalent-admin]
+region             = eu-west-1
+credential_process = saml2aws login --skip-prompt --quiet --credential-process --role arn:aws:iam::471410223680:role/jt-production-okta-admin --profile jobandtalent-admin
+
+[profile jt-stg-products]
+region             = eu-west-1
+credential_process = saml2aws login --skip-prompt --quiet --credential-process --role=arn:aws:iam::527135779553:role/jt-stg-products-saml-admin-iam-role --profile jt-stg-products
+
+[profile jt-stg-platform]
+region             = eu-west-1
+credential_process = saml2aws login --skip-prompt --quiet --credential-process --role=arn:aws:iam::355597951345:role/jt-stg-platform-saml-admin-iam-role --profile jt-stg-platform
+
+[profile jobandtalent-finops]
+region             = eu-west-1
+credential_process = saml2aws login --skip-prompt --quiet --credential-process --role arn:aws:iam::471410223680:role/jt-production-saml-finops-iam-role
+
+[profile jobandtalent-sysadmin]
+region             = eu-west-1
+credential_process = saml2aws login --skip-prompt --quiet --credential-process --role arn:aws:iam::471410223680:role/sysadmin
+
+# jt-exp-data account 056952183126
+[profile jt-exp-data-admin]
+region             = eu-west-1
+credential_process = saml2aws login --skip-prompt --quiet --credential-process --role arn:aws:iam::056952183126:role/jt-exp-data-saml-admin-iam-role --profile jt-exp-data-admin
+
+[profile jt-exp-data-ro]
+region             = eu-west-1
+credential_process = saml2aws login --skip-prompt --quiet --credential-process --role arn:aws:iam::056952183126:role/jt-exp-data-saml-ro-iam-role --profile jt-exp-data-ro
+
+[profile jt-exp-products-admin]
+region             = eu-west-1
+credential_process = saml2aws login --skip-prompt --quiet --credential-process --role arn:aws:iam::927864434625:role/jt-exp-products-saml-admin-iam-role --profile jt-exp-products-admin
+
+# ##
+[profile production]
+credential_process       = saml2aws login --skip-prompt --quiet --credential-process --role arn:aws:iam::471410223680:role/jt-production-okta-admin --profile production
+region                   = eu-west-1
+
+[profile staging]
+credential_process       = saml2aws login --skip-prompt --quiet --credential-process --role arn:aws:iam::215866266283:role/jt-staging-okta-admin --profile staging
+region                   = eu-west-1
+
+[profile experimental]
+region             = eu-west-1
+credential_process = saml2aws login --skip-prompt --quiet --credential-process --role arn:aws:iam::924255940109:role/sysadmin --profile experimental
+
+[profile jt-experimental]
+region             = eu-west-1
+credential_process = saml2aws login --skip-prompt --quiet --credential-process --role arn:aws:iam::924255940109:role/sysadmin --profile jt-experimental
+
+[profile jt-glb-platform]
+region             = eu-west-1
+credential_process = saml2aws login --skip-prompt --quiet --credential-process --role arn:aws:iam::245150257165:role/jt-glb-platform-saml-admin-iam-role --profile jt-glb-platform
+
+[profile jt-glb-qa]
+region             = eu-west-1
+credential_process = saml2aws login --skip-prompt --quiet --credential-process --role arn:aws:iam::481869363372:role/jt-glb-qa-saml-admin-iam-role --profile jt-glb-qa
+
+[profile jt-glb-domains]
+region             = eu-west-1
+credential_process = saml2aws login --skip-prompt --quiet --credential-process --role arn:aws:iam::473240603231:role/jt-glb-domains-saml-admin-iam-role --profile jt-glb-domains
+
+[profile jt-glb-connect]
+region             = eu-west-1
+credential_process = saml2aws login --skip-prompt --quiet --credential-process --role arn:aws:iam::229521086803:role/jt-glb-connect-saml-admin-iam-role --profile jt-glb-connect
+
+[profile jt-prd-rpa]
+region             = eu-west-1
+credential_process = saml2aws login --skip-prompt --quiet --credential-process --role arn:aws:iam::429210628915:role/jt-prd-rpa-saml-admin-iam-role --profile jt-prd-rpa
+
+[profile jt-exp-teleport]
+region             = eu-west-1
+credential_process = saml2aws login --skip-prompt --quiet --credential-process --role arn:aws:iam::538950119495:role/jt-exp-teleport-saml-admin-iam-role --profile jt-exp-teleport
+
+[profile jt-exp-platform]
+region             = eu-west-1
+credential_process = saml2aws login --skip-prompt --quiet --credential-process --role arn:aws:iam::283232090861:role/jt-exp-platform-saml-admin-iam-role --profile jt-exp-platform
+
+[profile jt-prd-data]
+region             = eu-west-1
+credential_process = saml2aws login --skip-prompt --quiet --credential-process --role arn:aws:iam::985838555035:role/jt-prd-data-saml-admin-iam-role --profile jt-prd-data
+
+[profile jt-prd-products]
+region             = eu-west-1
+credential_process = saml2aws login --skip-prompt --quiet --credential-process --role arn:aws:iam::325765342570:role/jt-prd-products-saml-admin-iam-role --profile jt-prd-products
+
+[profile jt-stg-data]
+region             = eu-west-1
+credential_process = saml2aws login --skip-prompt --quiet --credential-process --role arn:aws:iam::972154736825:role/jt-stg-data-saml-admin-iam-role --profile jt-stg-data
+
+[profile jt-prd-accion-plus]
+region             = us-east-1
+credential_process = saml2aws login --skip-prompt --quiet --credential-process --role arn:aws:iam::721924250444:role/jt-prd-accion-plus-saml-admin-iam-role --profile jt-prd-accion-plus
+
+## Test lambda
+[profile copy-lambda]
+role_arn        = arn:aws:iam::283232090861:role/crossaccount-backup-copy-CopyFunctionRole-1US51W11E73N3
+source_profile  = saml-jobandtalent
+{{ end }}

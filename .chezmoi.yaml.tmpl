@@ -1,0 +1,5 @@
+data:
+  isJT: {{ eq .chezmoi.hostname "Job-and-Talents-Mac" }}
+  isPersonal: {{ not (eq .chezmoi.hostname "Job-and-Talents-Mac") }}
+  isLinux: {{ eq .chezmoi.os "linux" }}
+  isMac: {{ eq .chezmoi.os "darwin" }}

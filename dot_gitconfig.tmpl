@@ -1,13 +1,24 @@
 [user]
   name = Juan Mesa
+  {{ if .isJT }}
+  email = juan.mesa@jobandtalent.com
+	signingkey = E1586AA0B183E880
+  {{ else }}
   email = linuxven@gmail.com
+  {{ end }}
 [github]
   # https://github.com/blog/180-local-github-config
+  {{ if .isJT }}
+  user = juanmesa-js
+  {{ else }}
   user = overdrive3000
+  {{ end }}
 
+{{ if .isPersonal }}
 # Authenticate using token when using https URL format
 [url "{{ (bitwardenFields "item" "Github").token_url.value }}"]
   insteadOf = https://github.com
+{{ end }}
 
 [color]
 # ui = true is a superset of all the more specific color options
@@ -63,6 +74,7 @@
   upm = !git fetch upstream && git merge upstream/master
   # new standard to replace the deprecated git-up gem package:
   up = pull --rebase --autostash
+  cd = rev-parse --show-toplevel
 
   # least used
   br = branch -a
@@ -167,9 +179,6 @@
 
 [diff]
   tool = vimdiff
-
-[init]
-  templatedir = ~/.dotfiles/.git_template
 
 [mergetool]
   prompt = false

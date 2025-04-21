@@ -12,5 +12,6 @@ sudo update-alternatives --install /usr/bin/vim vim "${NVIM_PATH}" 110
 sudo update-alternatives --install /usr/bin/vimdiff vimdiff "${NVIM_PATH}" 110
 {{ end -}}
 
-# install spacevim
-curl -sLf https://spacevim.org/install.sh | bash
+git clone https://github.com/NvChad/starter ~/.config/nvim
+
+echo "Finish nvchad installation by following https://nvchad.com/docs/quickstart/install"

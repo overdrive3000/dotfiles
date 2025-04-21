@@ -24,8 +24,6 @@ sudo apt install -y \
 	gnupg \
 	gparted \
 	htop \
-	i3 \
-	i3lock-fancy \
 	i7z \
 	jq \
 	kdiff3 \
