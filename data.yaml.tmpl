@@ -1,0 +1,6 @@
+# ~/.local/share/chezmoi/data.yaml.tmpl
+
+isJT: {{ eq .chezmoi.hostname "Job-and-Talents-Mac" }}
+isPersonal: {{ neq .chezmoi.hostname "Job-and-Talents-Mac" }}
+isLinux: {{ eq .chezmoi.os "linux" }}
+isMac: {{ eq .chezmoi.os "darwin" }}

@@ -1,0 +1,192 @@
+#########################################
+# Utility Functions
+
+# Create a new git repo with one README commit and CD into it
+function gitnr() { mkdir $1; cd $1; git init; touch README; git add README; git commit -mFirst-commit;}
+
+# Do a Matrix movie effect of falling characters
+function matrix1() {
+echo -e "\e[1;40m" ; clear ; while :; do echo $LINES $COLUMNS $(( $RANDOM % $COLUMNS)) $(( $RANDOM % 72 )) ;sleep 0.05; done|gawk '{ letters="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()"; c=$4; letter=substr(letters,c,1);a[$3]=0;for (x in a) {o=a[x];a[x]=a[x]+1; printf "\033[%s;%sH\033[2;32m%s",o,x,letter; printf "\033[%s;%sH\033[1;37m%s\033[0;0H",a[x],x,letter;if (a[x] >= $1) { a[x]=0; } }}'
+}
+
+function matrix2() {
+echo -e "\e[1;40m" ; clear ; characters=$( jot -c 94 33 | tr -d '\n' ) ; while :; do echo $LINES $COLUMNS $(( $RANDOM % $COLUMNS)) $(( $RANDOM % 72 )) $characters ;sleep 0.05; done|gawk '{ letters=$5; c=$4; letter=substr(letters,c,1);a[$3]=0;for (x in a) {o=a[x];a[x]=a[x]+1; printf "\033[%s;%sH\033[2;32m%s",o,x,letter; printf "\033[%s;%sH\033[1;37m%s\033[0;0H",a[x],x,letter;if (a[x] >= $1) { a[x]=0; } }}'
+}
+
+## hammer a service with curl for a given number of times
+## usage: curlhammer $url
+function curlhammer () {
+  bot "about to hammer $1 with $2 curls ⇒";
+  echo "curl -k -s -D - $1 -o /dev/null | grep 'HTTP/1.1' | sed 's/HTTP\/1.1 //'"
+  for i in {1..$2}
+  do
+    curl -k -s -D - $1 -o /dev/null | grep 'HTTP/1.1' | sed 's/HTTP\/1.1 //'
+  done
+  bot "done"
+}
+
+## curlheader will return only a specific response header or all response headers for a given URL
+## usage: curlheader $header $url
+## usage: curlheader $url
+function curlheader() {
+  if [[ -z "$2" ]]; then
+    echo "curl -k -s -D - $1 -o /dev/null"
+    curl -k -s -D - $1 -o /dev/null:
+  else
+    echo "curl -k -s -D - $2 -o /dev/null | grep $1:"
+    curl -k -s -D - $2 -o /dev/null | grep $1:
+  fi
+}
+
+## get the timings for a curl to a URL
+## usage: curltime $url
+function curltime(){
+  curl -w "   time_namelookup:  %{time_namelookup}\n\
+      time_connect:  %{time_connect}\n\
+   time_appconnect:  %{time_appconnect}\n\
+  time_pretransfer:  %{time_pretransfer}\n\
+     time_redirect:  %{time_redirect}\n\
+time_starttransfer:  %{time_starttransfer}\n\
+--------------------------\n\
+        time_total:  %{time_total}\n" -o /dev/null -s "$1"
+}
+
+function fixperms(){
+    find . \( -name "*.sh" -or -type d \) -exec chmod 755 {} \; && find . -type f ! -name "*.sh" -exec chmod 644 {} \;
+}
+
+# Create a new directory and enter it
+function mkd() {
+  mkdir -p "$@" && cd "$_";
+}
+
+# Generate Subresource Integrity hashes.
+# 1st argument is the filename.
+# 2nd argument, optional, is the hash algorithm
+# (currently the allowed prefixes are sha256, sha384, and sha512)
+# See http://www.w3.org/TR/SRI/ and
+# https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity
+function sri() {
+  if [ -z "${1}" ]; then
+    echo "ERROR: No file specified.";
+    return 1;
+  fi;
+  local algorithm="${2:-sha512}"
+  if ! echo "${algorithm}" | egrep -q "^sha(256|384|512)$"; then
+    echo "ERROR: hash algorithm must be sha256, sha384 or sha512.";
+    return 1;
+  fi;
+  local filehash=$(openssl dgst "-${algorithm}" -binary "$1" | openssl base64 -A)
+  if [ -z "${filehash}" ]; then
+    return 1;
+  fi;
+  echo "${algorithm}-${filehash}";
+}
+
+## output directory/file tree, excluding ignorables
+function tre(){
+  tree -aC -I '.git|node_modules|bower_components|.DS_Store' --dirsfirst "$@"
+}
+
+function weather() {
+  curl wttr.in/$1
+}
+function ipinfo(){
+  curl ipinfo.io/$1
+}
+
+# fo [FUZZY PATTERN] - Open the selected file with the default editor
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+function fo() {
+  local files
+  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
+
+
+{{ if .isJT }}
+#############################################
+## saml2aws function helpers
+## Loging to AWS and clean credentials file
+function awslogin() {
+  echo "" > $HOME/.aws/credentials
+  saml2aws login --force
+}
+
+## change aws environment
+#
+function awsenv() {
+  env=${1}
+  declare -A roles
+
+  roles=(
+    ["jt-exp-data"]="arn:aws:iam::056952183126:role/jt-exp-data-saml-admin-iam-role"
+    ["jt-exp-devcloud"]="arn:aws:iam::533267346854:role/jt-exp-devcloud-saml-admin-iam-role"
+    ["jt-exp-platform"]="arn:aws:iam::283232090861:role/jt-exp-platform-saml-admin-iam-role"
+    ["jt-exp-products"]="arn:aws:iam::927864434625:role/jt-exp-products-saml-admin-iam-role"
+    ["jt-exp-security"]="arn:aws:iam::747722401677:role/jt-exp-security-saml-admin-iam-role"
+    ["jt-exp-teleport"]="arn:aws:iam::538950119495:role/jt-exp-teleport-saml-admin-iam-role"
+    ["jt-glb-activedirectory"]="arn:aws:iam::699588849812:role/jt-glb-activedirectory-saml-admin-iam-role"
+    ["jt-glb-connect"]="arn:aws:iam::229521086803:role/jt-glb-connect-saml-admin-iam-role"
+    ["jt-glb-domains"]="arn:aws:iam::473240603231:role/jt-glb-domains-saml-admin-iam-role"
+    ["jt-glb-logging"]="arn:aws:iam::741664104517:role/jt-glb-logging-saml-admin-iam-role"
+    ["jt-glb-platform"]="arn:aws:iam::245150257165:role/jt-glb-platform-saml-admin-iam-role"
+    ["jt-glb-qa"]="arn:aws:iam::481869363372:role/jt-glb-qa-saml-admin-iam-role"
+    ["jt-glb-transit"]="arn:aws:iam::622466110911:role/jt-glb-transit-saml-admin-iam-role"
+    ["jt-prd-accion-plus"]="arn:aws:iam::721924250444:role/jt-prd-accion-plus-saml-admin-iam-role"
+    ["jt-prd-data"]="arn:aws:iam::985838555035:role/jt-prd-data-saml-admin-iam-role"
+    ["jt-prd-multitiemp"]="arn:aws:iam::053099719220:role/jt-prd-multitiempo-saml-admin-iam-role"
+    ["jt-prd-products"]="arn:aws:iam::325765342570:role/jt-prd-products-saml-admin-iam-role"
+    ["jt-prd-rpa"]="arn:aws:iam::429210628915:role/jt-prd-rpa-saml-admin-iam-role"
+    ["jt-stg-data"]="arn:aws:iam::972154736825:role/jt-stg-data-saml-admin-iam-role"
+    ["jt-stg-platform"]="arn:aws:iam::355597951345:role/jt-stg-platform-saml-admin-iam-role"
+    ["jt-stg-products"]="arn:aws:iam::527135779553:role/jt-stg-products-saml-admin-iam-role"
+    ["jt-uat-products"]="arn:aws:iam::590183695038:role/jt-uat-products-saml-admin-iam-role"
+  )
+
+  saml2aws login --skip-prompt --quiet --role ${roles[${env}]} --profile ${env}
+  export AWS_PROFILE=${env}
+  export AWS_DEFAULT_PROFILE=${env}
+}
+#############################################
+
+## Connect to ArgoCD
+function connect_argo() {
+    export TELEPORT_PROXY="connect.glb.jobandtalent.cloud"
+    export GITHUB_USERNAME="juanmesa-jt"
+    export ARGOCD_SERVER="argo.connect.glb.jobandtalent.cloud"
+    export ARGOCD_OPTS="--client-crt /Users/$USER/.tsh/keys/$TELEPORT_PROXY/$GITHUB_USERNAME-app/$TELEPORT_PROXY/argo-x509.pem --client-crt-key /Users/$USER/.tsh/keys/$TELEPORT_PROXY/$GITHUB_USERNAME --grpc-web"
+    tsh login --proxy=$TELEPORT_PROXY
+    tsh apps login argo
+    argocd login --sso $ARGOCD_SERVER
+}
+
+function connect_argo_exp() {
+    export TELEPORT_PROXY="connect.exp.jobandtalent.cloud"
+    export GITHUB_USERNAME="juanmesa-jt"
+    export ARGOCD_SERVER="argo.connect.exp.jobandtalent.cloud"
+    export ARGOCD_OPTS="--client-crt /Users/$USER/.tsh/keys/$TELEPORT_PROXY/$GITHUB_USERNAME-app/$TELEPORT_PROXY/argo-x509.pem --client-crt-key /Users/$USER/.tsh/keys/$TELEPORT_PROXY/$GITHUB_USERNAME --grpc-web"
+    tsh login --proxy=$TELEPORT_PROXY
+    tsh apps login argo
+    argocd login --sso $ARGOCD_SERVER
+}
+
+## Get access to a Kubernetes node using SSM
+#
+start_ssm_session() {
+  local node_name=$1
+  
+  # Get the instance ID using kubectl and jq
+  local instance_id=$(kubectl get node "$node_name" -o json | jq -r '.spec.providerID' | awk -F'/' '{print $NF}')
+  
+  # Check if instance_id is not empty
+  if [ -z "$instance_id" ]; then
+    echo "Error: Unable to retrieve instance ID for node $node_name"
+    return 1
+  fi
+
+  # Start AWS SSM session
+  aws ssm start-session --target "$instance_id"
+}
+{{ end }}

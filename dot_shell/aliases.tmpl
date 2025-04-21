@@ -128,14 +128,10 @@ alias ecr-auth-finch="aws ecr get-login-password --region eu-west-1 | finch logi
 # extra kubernetes aliases
 alias kdelpf="kubectl delete pod --force --grace-period 0"
 
-######################
-# J&T specific | begin
-######################
+{{ if .isJT }}
 alias tfdocs="terraform-docs -c ~/.terraform-docs.yaml md ."
 alias tflogin="terraform login tf.platform.glb.jobandtalent.cloud"
 # Teleport cloud version aliases
 alias tsh-poc="$HOME/bin/teleport/tsh.app/Contents/MacOS/tsh"
 alias tctl-poc="$HOME/bin/teleport/tctl.app/Contents/MacOS/tctl"
-#####################
-# J&T specific | end
-#####################
+{{ end }}

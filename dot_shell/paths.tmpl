@@ -1,6 +1,5 @@
 #My Scripts
 export PATH=$PATH:.
-#export PATH=$PATH:~/.dotfiles/scripts
 
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
@@ -16,3 +15,8 @@ export PATH=/usr/local/go/bin:$PATH
 
 # krew kubectl plugin
 export PATH=$HOME/.krew/bin:$PATH
+
+{{ if .isJT }}
+export PATH=/Users/juan.mesa@jobandtalent.com/repos/devkit/bin:$PATH
+export PATH=/Users/juan.mesa@jobandtalent.com/repos/devcloud/bin:$PATH
+{{ end }}
