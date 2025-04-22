@@ -1,0 +1,14 @@
+[
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "space": "command_palette::Toggle",
+      "space f f": "file_finder::Toggle",
+      "space f b": "buffer_search::FocusEditor",
+      "space e": "project_panel::ToggleFocus",
+      "ctrl-w v": "pane::SplitRight",
+      "ctrl-w s": "pane::SplitDown",
+      "g c c": "editor::ToggleComments"
+    }
+  }
+]
