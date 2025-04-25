@@ -1,6 +1,6 @@
 {
   "vim_mode": true,
-  "theme": "One Dark",
+  "theme": "One Dark Pro",
   "ui_font_size": 14,
   "buffer_font_size": 14,
   "buffer_font_family": "FiraCode Nerd Font",
@@ -21,6 +21,9 @@
     "font_size": 14,
     "blinking": "terminal_controlled"
   },
+  "auto_install_extensions": {
+    "helm": true
+  },
   "lsp": {
     "terraform-ls": {
       "initialization_options": {
@@ -28,6 +31,11 @@
           "prefillRequiredFields": true
         }
       }
+    },
+    "helm-ls": {
+      "enabled": true,
+      "helmPath": "/opt/homebrew/bin/helm",
+      "enableYAMLValidation": true
     }
   },
     "file_types": {
@@ -38,5 +46,31 @@
       "**/helmfile.d/**/*.yaml",
       "**/helmfile.d/**/*.yml"
     ]
+  },
+  "languages": {
+    "Helm": {
+      "formatter": "helm-ls",
+      "format_on_save": "off",
+      "tab_size": 2,
+      "diagnostics": {
+        "include_warnings": true
+      }
+    },
+    "YAML": {
+      "format_on_save": "off",
+      "tab_size": 2,
+      "preferred_line_length": 120
+    }
+  },
+  "active_pane_magnification": 1.1,
+  "buffer_history_retention": "30d",
+  "git": {
+    "show_diff_signs_in_gutter": true,
+    "auto_fetch_interval_minutes": 15
+  },
+  "bottom_dock_layout": "contained",
+  "workspace": {
+    "default_panel_size": 300,
+    "panel_ratio": [0.7, 0.3]
   }
 }
