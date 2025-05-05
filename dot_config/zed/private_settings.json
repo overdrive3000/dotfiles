@@ -72,5 +72,22 @@
   "workspace": {
     "default_panel_size": 300,
     "panel_ratio": [0.7, 0.3]
+  },
+  "vim": {
+    "use_system_clipboard": "always",
+    "use_multiline_find": true
+  },
+  "toolbar": {
+    "breadcrumbs": true,
+    "quick_actions": false
+  },
+  "preferred_line_length": 100,
+  "soft_wrap": "preferred_line_length",
+  "use_autoclose": false,
+  "git": {
+    "inline_blame": {
+      "enabled": false,
+      "delay_ms": 500
+    }
   }
 }
