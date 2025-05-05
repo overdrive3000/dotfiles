@@ -5,7 +5,6 @@
   "buffer_font_size": 14,
   "buffer_font_family": "FiraCode Nerd Font",
   "tab_size": 2,
-  "soft_wrap": "none",
   "relative_line_numbers": false,
   "cursor_blink": false,
   "format_on_save": "on",
@@ -38,7 +37,7 @@
       "enableYAMLValidation": true
     }
   },
-    "file_types": {
+  "file_types": {
     "Helm": [
       "**/templates/**/*.tpl",
       "**/templates/**/*.yaml",
@@ -49,7 +48,6 @@
   },
   "languages": {
     "Helm": {
-      "formatter": "helm-ls",
       "format_on_save": "off",
       "tab_size": 2,
       "diagnostics": {
@@ -66,7 +64,11 @@
   "buffer_history_retention": "30d",
   "git": {
     "show_diff_signs_in_gutter": true,
-    "auto_fetch_interval_minutes": 15
+    "auto_fetch_interval_minutes": 15,
+    "inline_blame": {
+      "enabled": false,
+      "delay_ms": 500
+    }
   },
   "bottom_dock_layout": "contained",
   "workspace": {
@@ -83,11 +85,5 @@
   },
   "preferred_line_length": 100,
   "soft_wrap": "preferred_line_length",
-  "use_autoclose": false,
-  "git": {
-    "inline_blame": {
-      "enabled": false,
-      "delay_ms": 500
-    }
-  }
+  "use_autoclose": false
 }
