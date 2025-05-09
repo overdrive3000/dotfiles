@@ -3,7 +3,7 @@
   "theme": "One Dark Pro",
   "ui_font_size": 14,
   "buffer_font_size": 14,
-  "buffer_font_family": "FiraCode Nerd Font",
+  "buffer_font_family": "FiraCode Nerd Font Mono",
   "tab_size": 2,
   "relative_line_numbers": false,
   "cursor_blink": false,
