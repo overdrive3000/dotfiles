@@ -99,5 +99,5 @@
   },
   "preferred_line_length": 100,
   "soft_wrap": "preferred_line_length",
-  "use_autoclose": false
+  "use_autoclose": true
 }

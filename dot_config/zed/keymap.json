@@ -2,7 +2,7 @@
   {
     "context": "Editor && VimControl && !VimWaiting && !menu",
     "bindings": {
-      "space b": "editor::ToggleGitBlame",
+      "space b": "git::Blame",
       "shift-k": "editor::Hover",
       "space l f": "editor::Format",
       "space d": "diagnostics::Deploy",
@@ -11,7 +11,7 @@
       "space e": "workspace::ToggleLeftDock",
       "space /": "workspace::NewSearch",
       "n": "search::SelectNextMatch",
-      "shift-n": "search::SelectPrevMatch",
+      "shift-n": "search::SelectPreviousMatch",
       "space t": "workspace::NewCenterTerminal",
       "g b": "editor::ToggleComments",
       "g c c": "editor::ToggleComments",
@@ -22,46 +22,38 @@
       "ctrl-w s": "pane::SplitDown"
     }
   },
-	{
-		"context": "Editor && vim_mode == visual && !VimWaiting && !VimObject",
-		"bindings": {
-			"shift-j": "editor::MoveLineDown",
-			"shift-k": "editor::MoveLineUp"
-		}
-	},
   {
-		"context": "Dock || Terminal || Editor",
-		"bindings": {
-			"ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
-			"ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
-			"ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
-			"ctrl-j": ["workspace::ActivatePaneInDirection", "Down"]
-		}
-	},
-	{
-		"context": "Workspace",
-		"bindings": {
-			"ctrl-z": "workspace::ToggleZoom",
-			"cmd-k": [
-				"projects::OpenRecent",
-				{
-					"create_new_window": false
-				}
-			],
-			"ctrl-x": "tab_switcher::CloseSelectedItem"
-		}
-	},
-	{
-		"context": "Terminal",
-		"bindings": {
-			"cmd-t": "workspace::NewTerminal"
-		}
-	},
-	{
-		"context": "vim_mode == insert",
-		"bindings": {
-			"ctrl-k": "editor::ContextMenuPrev",
-			"ctrl-j": "editor::ContextMenuNext"
-		}
-	}
+    "context": "Editor && vim_mode == visual && !VimWaiting && !VimObject",
+    "bindings": {
+      "shift-j": "editor::MoveLineDown",
+      "shift-k": "editor::MoveLineUp"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-z": "workspace::ToggleZoom",
+      "cmd-k": [
+        "projects::OpenRecent",
+        {
+          "create_new_window": false
+        }
+      ],
+      "ctrl-x": "tab_switcher::CloseSelectedItem"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "cmd-t": "workspace::NewTerminal"
+    }
+  },
+  {
+    "context": "vim_mode == insert",
+    "bindings": {
+      "ctrl-k": "editor::ContextMenuPrevious",
+      "ctrl-j": "editor::ContextMenuNext",
+      "ctrl-tab": "editor::AcceptEditPrediction"
+    }
+  }
 ]
