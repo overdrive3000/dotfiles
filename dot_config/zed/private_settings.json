@@ -35,6 +35,19 @@
       "enabled": true,
       "helmPath": "/opt/homebrew/bin/helm",
       "enableYAMLValidation": true
+    },
+    "gopls": {
+      "initialization_options": {
+        "hints": {
+          "assignVariableTypes": true,
+          "compositeLiteralFields": true,
+          "compositeLiteralTypes": true,
+          "constantValues": true,
+          "functionTypeParameters": true,
+          "parameterNames": true,
+          "rangeVariableTypes": true
+        }
+      }
     }
   },
   "file_types": {
