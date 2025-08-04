@@ -14,37 +14,3 @@ export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
 #########################################################################
 export AWS_DEFAULT_REGION=eu-west-1
 export AWS_PAGER=
-{{ if .isJT }}
-export AWS_PROFILE=saml-jobandtalent
-{{ end }}
-
-{{ if .isPersonal }}
-export GITHUB_TOKEN={{ (bitwardenFields "item" "LINUXVEN_GH_TOKEN").personal_token.value }}
-{{ end }}
-
-{{ if .isJT }}
-export GITHUB_TOKEN={{ (bitwardenFields "item" "JT_SECRETS").gh_token.value }}
-export VAULT_GITHUB_API_TOKEN=${GITHUB_TOKEN}
-export HOMEBREW_GITHUB_API_TOKEN=${GITHUB_TOKEN}
-export TF_VAR_github_api_token=${GITHUB_TOKEN}
-
-export SLACK_OAUTH_TOKEN={{ (bitwardenFields "item" "JT_SECRETS").slack_token.value }}
-
-#########################################################################
-# Ansible workaround
-#########################################################################
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-
-export BUNDLE_GEM__FURY__IO={{ (bitwardenFields "item" "JT_SECRETS").gem_fury_io.value }}
-export BUNDLE_GEMS__CONTRIBSYS__COM={{ (bitwardenFields "item" "JT_SECRETS").contribsys_com.value }}
-export DEVKIT_SECRETS_PASSWORD={{ (bitwardenFields "item" "JT_SECRETS").devkit_password.value }}
-
-export AIVEN_TOKEN={{ (bitwardenFields "item" "JT_SECRETS").aiven_token.value }}
-export CLOUDFLARE_API_TOKEN={{ (bitwardenFields "item" "JT_SECRETS").cloudflare_token.value }}
-
-#########################################################################
-# Pagerduty Token
-#########################################################################
-PAGERDUTY_USER_TOKEN={{ (bitwardenFields "item" "JT_SECRETS").pagerduty_token.value }}
-
-{{ end }}
