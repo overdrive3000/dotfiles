@@ -1,24 +1,9 @@
 [user]
   name = Juan Mesa
-  {{ if .isJT }}
-  email = juan.mesa@jobandtalent.com
-	signingkey = E1586AA0B183E880
-  {{ else }}
   email = linuxven@gmail.com
-  {{ end }}
 [github]
   # https://github.com/blog/180-local-github-config
-  {{ if .isJT }}
-  user = juanmesa-js
-  {{ else }}
   user = overdrive3000
-  {{ end }}
-
-# {{ if .isPersonal }}
-# # Authenticate using token when using https URL format
-# [url "{{ (bitwardenFields "item" "LINUXVEN_GH_TOKEN").token_url.value }}"]
-#   insteadOf = https://github.com
-# {{ end }}
 
 [color]
 # ui = true is a superset of all the more specific color options
